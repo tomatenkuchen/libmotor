@@ -19,6 +19,8 @@ together in a measurement loop:
 2. feed speed or power controller
 3. take new output voltage and stuff it into inverter module
 
+no_std is used to make this code available to bare metal embedded systems
+
 ## to do
 
 - [ ] write pid controller in functional form
@@ -28,7 +30,9 @@ together in a measurement loop:
 
 ## Warranties and Licences
 
-This software is licenced unter [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt) open source license.
+This software is licenced unter
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+open source license.
 It comes without any warranties or liabilities of any form. Use it with care.
 
 ## Contributions

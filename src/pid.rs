@@ -110,7 +110,7 @@ mod tests {
             limit_low: -100f32,
         };
 
-        let mut pid = PID::new(cfg, 1000f32);
+        let mut pid = PID::new(cfg, 1f32);
 
         // test pi
         assert_eq!(pid.update(1f32), 2f32);
@@ -139,8 +139,7 @@ mod tests {
             limit_low: -100f32,
         };
 
-        let mut pid = PID::new(cfg, 1000f32);
-
+        let mut pid = PID::new(cfg, 1f32);
         // test pi
         assert_eq!(pid.update(1f32), 2f32);
         // check differentiator

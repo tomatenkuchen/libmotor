@@ -24,8 +24,9 @@ no_std is used to make this code available to bare metal embedded systems
 ## to do
 
 - [ ] write pid controller in functional form
-- [ ] write d/q trafos
+- [ ] write d/q trafos in functional form
 - [ ] write estimator
+- [ ] write hall sensor estimator
 - [ ] complete tests
 
 ## Warranties and Licences

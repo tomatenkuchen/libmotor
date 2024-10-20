@@ -3,6 +3,10 @@ name = "libmotor"
 version = "0.1.0"
 edition = "2021"
 
+[dependencies]
+num-traits = { version = "0.2", default-features = false, features = ["libm"] }
+micromath = "2.1.0"
+
 [dependencies.num]
 version = "0.4.3"
 default-features = false

@@ -41,7 +41,7 @@ pub fn ab2abc(ab: Complex<f32>) -> [f32; 3] {
 pub fn abc2ab(abc: [f32; 3]) -> Complex<f32> {
     let invsqrt3 = 1f32 / 3f32.sqrt();
     let re = abc[0];
-    let im = invsqrt3 * (abc[0] + abc[1]);
+    let im = invsqrt3 * (abc[0] + 2f32 * abc[1]);
 
     c32(re, im)
 }
@@ -51,28 +51,35 @@ mod tests {
     use super::*;
 
     #[test]
-    fn ab2dq() {
+    fn test_ab2dq() {
         let ab = c32(325f32, 0f32);
-        let dq = ab2dq(ab, std::f32::consts::PI / 2f32);
-        assert_eq!(dq, c32(0f32, 325f32));
+        let dq = ab2dq(ab, core::f32::consts::PI / 2f32);
+        assert!(float_cmp::approx_eq!(f32, dq.re, 0f32, epsilon = 0.1));
+        assert!(float_cmp::approx_eq!(f32, dq.im, 325f32, epsilon = 0.1));
     }
 
     #[test]
-    fn dq2ab() {
+    fn test_dq2ab() {
         let dq = c32(325f32, 0f32);
-        let ab = dq2ab(dq, std::f32::consts::PI / 2f32);
-        assert_eq!(ab, c32(0f32, -325f32));
+        let ab = dq2ab(dq, core::f32::consts::PI / 2f32);
+        assert!(float_cmp::approx_eq!(f32, ab.re, 0f32, epsilon = 0.1));
+        assert!(float_cmp::approx_eq!(f32, ab.im, -325f32, epsilon = 0.1));
     }
 
     #[test]
-    fn abc2ab() {
-        let abc = [325f32, -165f32, -165f32];
+    fn test_abc2ab() {
+        let abc = [325f32, -162.5f32, -162.5f32];
         let ab = abc2ab(abc);
+        assert!(float_cmp::approx_eq!(f32, ab.re, 325f32, epsilon = 0.1));
+        assert!(float_cmp::approx_eq!(f32, ab.im, 0f32, epsilon = 0.1));
     }
 
     #[test]
-    fn ab2abc() {
-        let abc = [325f32, -165f32, -165f32];
-        let ab = ab2abc(abc);
+    fn test_ab2abc() {
+        let ab = c32(216.666f32, 0f32);
+        let abc = ab2abc(ab);
+        assert!(float_cmp::approx_eq!(f32, abc[0], 325f32, epsilon = 0.1));
+        assert!(float_cmp::approx_eq!(f32, abc[1], -162.5f32, epsilon = 0.1));
+        assert!(float_cmp::approx_eq!(f32, abc[2], -162.5f32, epsilon = 0.1));
     }
 }

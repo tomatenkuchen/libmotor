@@ -55,7 +55,7 @@ mod tests {
         let ab = c32(325f32, 0f32);
         let dq = ab2dq(ab, core::f32::consts::PI / 2f32);
         assert!(float_cmp::approx_eq!(f32, dq.re, 0f32, epsilon = 0.1));
-        assert!(float_cmp::approx_eq!(f32, dq.im, 325f32, epsilon = 0.1));
+        assert!(float_cmp::approx_eq!(f32, dq.im, -325f32, epsilon = 0.1));
     }
 
     #[test]
@@ -63,7 +63,7 @@ mod tests {
         let dq = c32(325f32, 0f32);
         let ab = dq2ab(dq, core::f32::consts::PI / 2f32);
         assert!(float_cmp::approx_eq!(f32, ab.re, 0f32, epsilon = 0.1));
-        assert!(float_cmp::approx_eq!(f32, ab.im, -325f32, epsilon = 0.1));
+        assert!(float_cmp::approx_eq!(f32, ab.im, 325f32, epsilon = 0.1));
     }
 
     #[test]

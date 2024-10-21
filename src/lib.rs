@@ -4,7 +4,7 @@
 
 //! rust library for generic motor control of pmdc motors
 
-mod dq;
+pub mod dq;
 mod estimator;
 mod hall;
-mod pid;
+pub mod pid;

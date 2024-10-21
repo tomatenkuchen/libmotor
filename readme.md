@@ -2,7 +2,7 @@
 
 This crate combines motor control structs for use on embedded devices.
 In the first versions, we focus on 3 phase permanent magnet DC motors (PMDC).
-This type is mainly used by drone engines, robotics  and also resemble grid
+This type is mainly used by drone engines, robotics and also resemble grid
 specs.
 
 This crate will combine the following modules:
@@ -23,18 +23,17 @@ no_std is used to make this code available to bare metal embedded systems
 
 ## to do
 
-- [ ] write pid controller in functional form
-- [ ] write d/q trafos in functional form
+- [x] write pid controller
+- [x] write d/q trafos
 - [ ] write estimator
 - [ ] write hall sensor estimator
 - [ ] complete tests
 
 ## Warranties and Licences
 
-This software is licenced unter
-[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-open source license.
-It comes without any warranties or liabilities of any form. Use it with care.
+This software is licenced unter [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) open source license.
+It comes without any warranties or liabilities of any form.
+Use it with care.
 
 ## Contributions
 

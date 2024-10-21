@@ -5,7 +5,6 @@
 //! and
 //! [clarke](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_transformation)
 //! transformations and inverses
-//!
 
 use micromath::F32Ext;
 use num::{complex::c32, Complex};

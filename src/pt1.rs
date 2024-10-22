@@ -68,6 +68,13 @@ mod tests {
         for _ in 0..1000 {
             pt1.update(1f32);
         }
-        assert_eq!(pt1.output, 0.62f32);
+
+        // after τ has passed, output should be 1-exp(-1)
+        assert!(float_cmp::approx_eq!(
+            f32,
+            pt1.output,
+            0.6321f32,
+            epsilon = 0.001
+        ));
     }
 }

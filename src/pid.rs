@@ -3,18 +3,29 @@
 
 //! rust library for generic motor control of pmdc motors
 
-struct PID {
+/// pid controller data struct. contains all the state of the pid
+pub struct PID {
+    /// state of integrator channel
     i_chan: f32,
+    /// state of differentiator channel (last updated value)
     d_chan: f32,
+    /// stored most recent output of controller
     output: f32,
+    /// pid configuration like amplifications
     config: PIDConfig,
 }
 
-struct PIDConfig {
+/// configuration struct for pid contstruction
+pub struct PIDConfig {
+    /// P amplification of input
     K_p: f32,
+    /// Integrator amplification, a.k.a. T_n
     K_i: f32,
+    /// differentiator amplification, a.k.a. T_v
     K_d: f32,
+    /// high output limit
     limit_high: f32,
+    /// low output limit
     limit_low: f32,
 }
 

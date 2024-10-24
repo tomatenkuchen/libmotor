@@ -1,5 +1,6 @@
 #![deny(unsafe_code)]
 #![deny(missing_docs)]
+#![allow(non_snake_case)]
 
 //! rust library for generic motor control of pmdc motors
 

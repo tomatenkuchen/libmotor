@@ -24,11 +24,20 @@ no_std is used to make this code available to bare metal embedded systems
 ## to do
 
 - [x] write pid controller
+  - [x] implementation
+  - [x] tests
 - [x] write d/q trafos
+  - [x] implementation
+  - [x] tests
 - [x] write pt1 for filtering
+  - [x] implementation
+  - [x] tests
 - [ ] write estimator
+  - [ ] implementation
+  - [ ] tests
 - [ ] write hall sensor estimator
-- [ ] complete tests
+  - [x] implementation
+  - [ ] tests
 
 ## Warranties and Licences
 

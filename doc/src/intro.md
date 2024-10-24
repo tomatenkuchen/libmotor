@@ -17,13 +17,13 @@ Motor control on embedded systems is a two fold problem.
 The first requires you to know your chip and hardware really well.
 The second wants all your control systems knowledge and 3 phase skills.
 
-The great desaster emerges if you mix the two. Trust me.
+The great disaster emerges if you mix the two. Trust me.
 
 I want to make a couple of motors spin - and I want to do it with Rust.
 So please bear with me if I'm writing my code like a hobbyist and still
 stick to some C++ paradigms more than I needed to. Please correct me!
 
-This crate resembles all points from step 2. A seperate implementation
+This crate resembles all points from step 2. A separate implementation
 on a [cheap available board](https://www.st.com/en/evaluation-tools/b-g431b-esc1.html)
 will follow, and use libmotor. Don't be upset by the fact that the
 proposed board is low voltage. The concepts of this board should work
@@ -37,7 +37,7 @@ Motor control isn't particularly hard in itself, it's just hard to keep
 your controller focused on it. I only know of cases where motor control is
 a hard real time application. One loop of:
 
-1. fetch the analog data from ADC. make it pretty
+1. fetch the analog data from ADC. Make it pretty
 2. update rotor position and rotor speed on base of ADC input  
 (or maybe hall sensor input)
 3. run PID controller of speed estimation and adapt output voltage
@@ -64,5 +64,5 @@ If you're using normal off the shelf MOSFETs for your inverter stage, your
 PWM frequency you can use is around 16 to 48 kHz if you don't want to waste all
 your energy on switching losses. That translates nicely to our 20 µs goal.
 If you're going with high speed GaN MOSFETs and you're driving your motor
-in the high hundrets of kilohertz, you're likely to run into performance issues
-with your CPU, so better seperate the control loop from your PWM interrupt.
+in the high hundreds of kilohertz, you're likely to run into performance issues
+with your CPU, so better separate the control loop from your PWM interrupt.

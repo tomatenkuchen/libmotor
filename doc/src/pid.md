@@ -11,11 +11,11 @@ those who never dipped their toes into the muddy waters of control systems.
 
 Defining a control system is hard work. As soon as your system is a bit more
 complex than a charging capacitor, you're in for a rough afternoon in the lab
-with a lot of measurements, and a sad lonlely weekend of approximations.
+with a lot of measurements, and a sad lonely weekend of approximations.
 
-If you're not yet done reconsidering your life's carreer choices, you probably
+If you're not yet done reconsidering your life's career choices, you probably
 want to go and change something about your system. And as you remember that we
-live in the nice days of microcontrollers, you decide to outsource this task of
+live in the nice days of micro controllers, you decide to outsource this task of
 changing stuff to a controller.
 
 ## The Controller
@@ -57,19 +57,19 @@ the 0 error goal.
 
 Cool! Use it all the time then!
 
-Oh no please not! The I Channel has some weired side effects. It's really
+Oh no please not! The I Channel has some weird side effects. It's really
 easy to get a system to swing out of control if your I amplification K_i
 (sometimes you'll find the inverse T_N = 1/K_i) is not meticulously tuned.
 
 ### D
 
-If you thoght you're off the hook, you're wrong. And D is the actual villain.
+If you thought you're off the hook, you're wrong. And D is the actual villain.
 The D channel also remembers something. It's the last error you've shoved into
 PID. D channel takes the difference to the most current error value, and
 amplifies the result by a factor K_d (or sometimes called by the inverse T_v).
 
 D Channel can be really helpful to prevent swings, because it resists change.
-Ideally you can crank P and I up until everythin is blazingly fast approaching,
+Ideally you can crank P and I up until everything is blazingly fast approaching,
 but swinging wildly also. All you need is correct your mess by an even more
 violent D controller. Right?
 
@@ -81,6 +81,6 @@ So make an educated decision about what part of the PID you really want to use.
 
 ## Conclusion
 
-The PID is a usefull tool to actually manipulate a system. Make sure you get
+The PID is a useful tool to actually manipulate a system. Make sure you get
 the parameters right though. Eventually you're stuck with testing and modelling
 on your own.

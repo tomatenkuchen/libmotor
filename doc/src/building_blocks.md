@@ -5,7 +5,7 @@ contains some of the blocks I found useful when working with motors. Make sure
 you understand what they do, before you work with them.
 
 Most of their API - hopefully - is well documented by reading the code
-documentation. Nontheless here come some concepts that don't fit so well
+documentation. Non the less here come some concepts that don't fit so well
 in this comment section.
 
 - dq-ab-abc transformations

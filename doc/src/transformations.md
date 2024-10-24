@@ -7,7 +7,7 @@ ahead and take your time.
 ## Why bother with transformations?
 
 The basic problem that we try to solve with this 3 phase conversion is to
-abstract our machine geometry away. Coordinating 3 or more phases on seperate
+abstract our machine geometry away. Coordinating 3 or more phases on separate
 controllers requires a lot more sinuses, square roots and conversions that we
 desire in motor control. Instead of looking at the machine, we want to keep our
 eyes on the magnetic field that is produced by the machine. Thankfully this
@@ -15,7 +15,7 @@ field is running in principle (and this is where we stay - don't bother about
 geometry, 3D magnetic fields, all that realism) in a 2D plane. Physicians think
 of vectors, engineers think of complex numbers - who ever you are: you don't
 want to stay at a 3 phase perspective looking at a magnetic field. We change
-coordinate systems to our good old kartesian friend.
+coordinate systems to our good old cartesean friend.
 
 We need a transformation matrix to get there. This was found by Edith Clarke
 and does no more than calculating a 3 phase input into a 2D plane. After the
@@ -31,7 +31,7 @@ Way nicer to handle are constants. Let's have constants. But how?
 So far we only focussed on the stator field. Torque in a
 [PMDC motor](https://en.wikipedia.org/wiki/Permanent_magnet_motor) is generated
 by the interaction of the magnetic fields of the rotor's with the stator's.
-Changing to the rotors perspective frees a lot of headspace otherwise
+Changing to the rotors perspective frees a lot of head space otherwise
 cluttered with phases, angles and amplitudes. Let's see how!
 
 ## Park transformation
@@ -54,8 +54,8 @@ I mentioned before: a park transformation or a dq transformation is a rotation.
 Nothing more. Nothing fancy. We rotate our newly created 2D model of our stator
 magnetic field to align with the rotor's magnetic field. Why?
 
-Because now, all our sinus-cosinus-trigonometry escapes our formulas. By
-definition, d-axis lies on the rotor's magnetic direction. the q-axis must
+Because now, all our sin-cosin-trigonometry escapes our formulas. By
+definition, d-axis lies on the rotor's magnetic direction. The q-axis must
 therefore be the orthogonal axis.
 
 If I want more torque, I need more voltage on the q-axis. Positive v_q means

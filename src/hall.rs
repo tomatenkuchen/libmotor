@@ -26,11 +26,11 @@
 
 use crate::motor::Mechanical;
 
-const HALL_SUM_TO_SECTOR_NO: [u8; 6] = [0, 2, 1, 4, 5, 3];
+const HALL_SUM_TO_SECTOR_NO: [i8; 6] = [0, 2, 1, 4, 5, 3];
 
 /// hall sensor rotor state estimation struct
 pub struct Hall {
-    recent_sector: u8,
+    recent_sector: i8,
 }
 
 impl Hall {
@@ -49,7 +49,7 @@ impl Hall {
         // find new sector by table
         let sector = HALL_SUM_TO_SECTOR_NO[hall_no];
         // find out direction by compare previous sector
-        let sector_diff = sector as i8 - self.recent_sector as i8;
+        let sector_diff = sector - self.recent_sector;
         // shadow copy sector to be f32 to make compiler happy
         let sector = sector as f32;
 

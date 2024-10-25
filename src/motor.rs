@@ -56,6 +56,20 @@ pub struct Mechanical {
     pub acceleration: f32,
 }
 
+impl Mechanical {
+    /// integrate all states by time. Make sure there's correct data in the struct fields.
+    pub fn calc_state_iteration(&mut self, t_delta: f32) {
+        self.speed += self.acceleration * t_delta;
+        self.angle += self.speed * t_delta;
+        // do a modulo for angle to keep it within 0 and 2 pi
+        if self.angle >= 2f32 * core::f32::consts::PI {
+            self.angle -= 2f32 * core::f32::consts::PI;
+        } else if self.angle <= 0f32 {
+            self.angle -= core::f32::consts::PI;
+        }
+    }
+}
+
 /// combined motor state
 pub struct Motor {
     /// electrical data

@@ -35,9 +35,9 @@ no_std is used to make this code available to bare metal embedded systems
 - [ ] write estimator
   - [ ] implementation
   - [ ] tests
-- [ ] write hall sensor estimator
+- [x] write hall sensor estimator
   - [x] implementation
-  - [ ] tests
+  - [x] tests
 
 ## Warranties and Licences
 

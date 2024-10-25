@@ -6,6 +6,7 @@
 use num::Complex;
 
 /// motor state
+#[derive(PartialEq, Debug)]
 pub struct Config {
     /// stator phase resistance R1
     pub resistance: f32,
@@ -23,6 +24,7 @@ pub struct Config {
 }
 
 /// electrical state of machine
+#[derive(PartialEq, Debug)]
 pub struct Electrical {
     /// voltage on machine in dq
     pub voltage: num::Complex<f32>,
@@ -47,6 +49,7 @@ impl Electrical {
 }
 
 /// mechanical state of motor
+#[derive(PartialEq, Debug)]
 pub struct Mechanical {
     /// rotor angle in rad
     pub angle: f32,
@@ -71,6 +74,7 @@ impl Mechanical {
 }
 
 /// combined motor state
+#[derive(PartialEq, Debug)]
 pub struct Motor {
     /// electrical data
     pub elec: Electrical,

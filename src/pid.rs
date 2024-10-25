@@ -5,6 +5,7 @@
 //! rust library for generic motor control of pmdc motors
 
 /// pid controller data struct. contains all the state of the pid
+#[derive(PartialEq, Debug)]
 pub struct PID {
     /// state of integrator channel
     i_chan: f32,
@@ -17,6 +18,7 @@ pub struct PID {
 }
 
 /// configuration struct for pid contstruction
+#[derive(PartialEq, Debug)]
 pub struct PIDConfig {
     /// P amplification of input
     K_p: f32,

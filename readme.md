@@ -32,7 +32,7 @@ no_std is used to make this code available to bare metal embedded systems
 - [x] write pt1 for filtering
   - [x] implementation
   - [x] tests
-- [ ] write estimator
+- [ ] write PLL
   - [ ] implementation
   - [ ] tests
 - [x] write hall sensor estimator

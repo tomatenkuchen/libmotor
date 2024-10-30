@@ -39,9 +39,12 @@ use crate::motor::Mechanical;
 
 /// extract rotor state information from electrial data
 /// TODO: check if it's a good idea to consume mutabl borrow of motor state instead
-pub fn pll(v_1: [f32; 3], i: [f32; 3]) -> Mechanical {
+pub fn pll(v_1_abc: [f32; 3], i_abc: [f32; 3]) -> Mechanical {
     // transform input to ab
+    let v_ab = abc2ab(v_1_abc);
+    let i_ab = abc2ab(i_abc);
     // calc V_z
+    let v_z = 
     // subtract V_z from V_1 to get V_ind
     // feed pll with V_ind.re to create feedback loop
     // integrate rotor speed for angle

@@ -18,12 +18,20 @@
 //! | 3             | 150° - 210° | false         | true          | true          | 6        |
 //! | 4             | 210° - 270° | false         | false         | true          | 4        |
 //! | 5             | 270° - 330° | true          | false         | true          | 5        |
+//! | error         | error       | false         | false         | false         | 0        |"
+//! | error         | error       | true          | true          | true          | 7        |"
 //!
 //! If we've got the hall states, we have a rough measure for the rotor position.
 
 use crate::motor::Mechanical;
 
-const HALL_SUM_TO_SECTOR_NO: [i8; 6] = [0, 2, 1, 4, 5, 3];
+const HALL_SUM_TO_SECTOR_NO: [i8; 8] = [-10, 0, 2, 1, 4, 5, 3, -10];
+
+enum Error {
+    /// Sensors show impossible input like all false or all true
+    ImpossibleSensorInput,
+    SectorSkipped,
+}
 
 /// hall sensor rotor state estimation struct
 #[derive(PartialEq, Debug)]
@@ -42,11 +50,14 @@ impl Hall {
         hall_2: bool,
         hall_3: bool,
         t_hall_state: f32,
-    ) -> Mechanical {
+    ) -> Result<Mechanical, Error> {
         // calc hall number
-        let hall_no = (hall_1 as u8 + (hall_2 as u8) * 2 + (hall_3 as u8) * 4) as usize - 1;
+        let hall_no = (hall_1 as u8 + (hall_2 as u8) * 2 + (hall_3 as u8) * 4) as usize;
         // find new sector by table
         let sector = HALL_SUM_TO_SECTOR_NO[hall_no];
+        if sector == -1 {
+            return Err(Error::ImpossibleSensorInput);
+        }
         // find out direction by compare previous sector
         let sector_diff = sector - self.recent_sector;
         // calc speed
@@ -54,44 +65,40 @@ impl Hall {
         // calc acceleration
         let acceleration_radperss = (speed_radpers - self.speed_recent) / t_hall_state;
 
-        let motorstate: Mechanical = match sector_diff {
+        let motorstate = match sector_diff {
             // clockwise operation
-            1 => Mechanical {
+            1 => Ok(Mechanical {
                 angle: sector as f32 * core::f32::consts::PI / 3f32 - core::f32::consts::PI / 6f32,
                 speed: speed_radpers,
                 acceleration: acceleration_radperss,
-            },
+            }),
             // counterclockwise operation
-            -1 => Mechanical {
+            -1 => Ok(Mechanical {
                 angle: sector as f32 * core::f32::consts::PI / 3f32 + core::f32::consts::PI / 6f32,
                 speed: -speed_radpers,
                 acceleration: acceleration_radperss,
-            },
+            }),
             // overflow from sector 5 to 0
-            -5 => Mechanical {
+            -5 => Ok(Mechanical {
                 angle: core::f32::consts::PI * 22f32 / 12f32,
                 speed: speed_radpers,
                 acceleration: acceleration_radperss,
-            },
+            }),
             // overflow from sector 0 to 5
-            5 => Mechanical {
+            5 => Ok(Mechanical {
                 angle: core::f32::consts::PI * 22f32 / 12f32,
                 speed: -speed_radpers,
                 acceleration: acceleration_radperss,
-            },
+            }),
 
             // error case, this should not happen
-            _ => Mechanical {
-                angle: 0f32,
-                speed: 0f32,
-                acceleration: 0f32,
-            },
+            _ => Err(Error::SectorSkipped),
         };
 
         // TODO: change result type to result type to make sure there's a response to sensor error
         // (like all false or all true inputs) and sector jumps (like 0 to 2)
 
-        self.speed_recent = motorstate.speed;
+        self.speed_recent = motorstate?.speed;
         self.recent_sector = sector;
 
         motorstate

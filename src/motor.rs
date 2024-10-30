@@ -80,4 +80,6 @@ pub struct Motor {
     pub elec: Electrical,
     /// mechanical data
     pub mech: Mechanical,
+    /// motor parameters
+    pub cfg: Config,
 }

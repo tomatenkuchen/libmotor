@@ -7,9 +7,14 @@ description = "motor control building blocks"
 readme = "readme.md"
 repository = "https://github.com/tomatenkuchen/libmotor"
 license = "GPL-2.0"
-keywords = ["motor control", "phase transformation", "control"]
-categories = ["embedded", "no-std::no-alloc", "science"]
-
+keywords = [
+  "motor control",
+  "phase transformation",
+  "control",
+  "foc",
+  "field oriented control",
+]
+categories = ["algorithms", "embedded", "science", "no-std", "no-std::no-alloc"]
 
 [dependencies]
 num-traits = { version = "0.2", default-features = false, features = ["libm"] }

@@ -35,17 +35,23 @@
 //!
 
 use crate::dq::abc2ab;
-use crate::motor::Mechanical;
+use crate::motor::Motor;
+use num::complex::c32;
 
 /// extract rotor state information from electrial data
 /// TODO: check if it's a good idea to consume mutabl borrow of motor state instead
-pub fn pll(v_1_abc: [f32; 3], i_abc: [f32; 3]) -> Mechanical {
+pub fn pll(motor: &mut Motor, v_1_abc: [f32; 3], i_abc: [f32; 3]) {
     // transform input to ab
     let v_ab = abc2ab(v_1_abc);
     let i_ab = abc2ab(i_abc);
     // calc V_z
-    let v_z = 
+    let z = c32(
+        motor.cfg.resistance,
+        motor.cfg.inductance.im * motor.mech.speed,
+    );
+    let v_z = i_ab * z;
     // subtract V_z from V_1 to get V_ind
+    let v_ind = v_ab - v_z;
     // feed pll with V_ind.re to create feedback loop
     // integrate rotor speed for angle
 }
